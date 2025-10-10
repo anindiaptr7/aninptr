@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administrasi Sistem Jaringan XII TKJ D</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+        /* RESET DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #fff0f6; /* very light pink */
+            color: #4a0033; /* dark pink/purple */
+        }
+
+        nav {
+            background-color: #e75480; /* vibrant pink */
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(231, 84, 128, 0.6);
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff0f6;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1.05em;
+            box-shadow: 0 2px 5px rgba(255 255 255 / 0.3);
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #d9487f; /* slightly darker pink */
+            color: #fff;
+            outline: none;
+            box-shadow: 0 0 8px #d9487f;
+        }
+
+        header {
+            background-color: #f783ac; /* soft pink */
+            color: #4a0033;
+            padding: 35px 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(231, 84, 128, 0.3);
+            border-radius: 0 0 25px 25px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+            font-size: 2.8em;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+
+        header p {
+            font-style: italic;
+            font-weight: 400;
+            opacity: 0.85;
+            font-size: 1.1em;
+        }
+
+        main {
+            padding: 30px 20px;
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff0f6;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(231, 84, 128, 0.15);
+        }
+
+        section {
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            border-bottom: 2px solid #f783ac;
+        }
+
+        section h2 {
+            color: #d9487f;
+            margin-bottom: 20px;
+            border-left: 8px solid #f783ac;
+            padding-left: 15px;
+            font-weight: 700;
+            font-size: 1.8em;
+            letter-spacing: 0.05em;
+        }
+
+        /* Profil Card */
+        .profil-card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            border: 2px solid #f783ac;
+            box-shadow: 0 8px 20px rgba(231, 84, 128, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .profil-card:hover {
+            box-shadow: 0 12px 30px rgba(217, 38, 97, 0.3);
+        }
+
+        .data-container {
+            display: flex;
+            gap: 35px;
+            align-items: flex-start;
+        }
+
+        .foto-area {
+            flex-shrink: 0;
+        }
+
+        .profil-foto {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #d9487f;
+            box-shadow: 0 0 15px rgba(217, 38, 97, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .profil-foto:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(217, 38, 97, 0.7);
+        }
+
+        .detail-area {
+            flex-grow: 1;
+            color: #5a1f3d;
+        }
+
+        .detail-area p {
+            margin-bottom: 12px;
+            padding-left: 14px;
+            border-left: 4px solid #f783ac;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .detail-area p strong {
+            color: #a80049;
+            font-weight: 700;
+        }
+
+        /* Materi Hosting */
+        .hosting-section p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #73264d;
+        }
+
+        .hosting-section ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .hosting-section li {
+            background-color: #fff;
+            padding: 22px 18px;
+            border-left: 7px solid #f783ac;
+            border-radius: 15px;
+            box-shadow: 0 5px 12px rgba(217, 38, 97, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            color: #5a1f3d;
+            font-weight: 500;
+        }
+
+        .hosting-section li:hover {
+            background-color: #ffe6f0;
+            box-shadow: 0 10px 20px rgba(217, 38, 97, 0.3);
+        }
+
+        .hosting-section li strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #d9487f;
+            font-weight: 700;
+            font-size: 1.15em;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #5a1f3d;
+            color: #ffd6e8;
+            text-align: center;
+            padding: 18px 15px;
+            font-size: 0.95em;
+            margin-top: 40px;
+            border-radius: 25px 25px 0 0;
+            box-shadow: 0 -3px 10px rgba(217, 38, 97, 0.4);
+        }
+
+        /* MEDIA QUERIES (Responsif untuk mobile) */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .data-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profil-foto {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 20px;
+            }
+
+            .detail-area p {
+                border-left: none;
+                padding-left: 0;
+            }
+
+            nav ul li {
+                margin: 0 12px;
+            }
+
+            nav ul li a {
+                padding: 6px 14px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Administrasi Sistem Jaringan XII TKJ D</h1>
+        <p>Proyek Pembelajaran dan Identitas Siswa</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#profil">Profil Saya</a></li>
+            <li><a href="#materi">Materi Hosting</a></li>
+        </ul>
+    </nav>
+    <main id="profil">
+        <section class="profil-card">
+            <h2>Kartu Identitas Siswa</h2>
+            <div class="data-container">
+                <div class="foto-area">
+                    <img src="foto-anda.jpg" alt="Foto Profil" class="profil-foto" />
+                </div>
+                <div class="detail-area">
+                    <p><strong>Nama Lengkap:</strong> ANINDIA PUTRI RABBANI</p>
+                    <p><strong>TTL:</strong> JAKARTA, 7 MARET 2008</p>
+                    <p><strong>Kelas/Jurusan:</strong> XII TKJ D (Teknik Komputer dan Jaringan)</p>
+                    <p><strong>Alamat:</strong> JL. LENTENG AGUNG 12/01</p>
+                    <p><strong>Cita-cita:</strong> POLWAN</p>
+                    <p><strong>Hobi:</strong> JALAN-JALAN</p>
+                    <p><strong>Makanan Favorit:</strong> DIMSUM MENTAI, SUSHI, DAN RAMEN</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="materi" class="hosting-section">
+            <h2>Materi Hosting</h2>
+            <p>
+                Hosting merupakan layanan yang menyediakan ruang di server agar website dapat diakses melalui internet. Ini adalah konsep vital dalam ASJ.
+            </p>
+            <ul>
+                <li>
+                    <strong>Shared Hosting</strong>
+                    <p>Satu server dibagi-bagi untuk banyak pengguna. Biaya murah, cocok untuk website pemula/kecil.</p>
+                </li>
+                <li>
+                    <strong>Virtual Private Server (VPS)</strong>
+                    <p>Pembagian server secara virtual, memberikan sumber daya khusus. Lebih fleksibel dan <em>powerful</em>.</p>
+                </li>
+                <li>
+                    <strong>Dedicated Server</strong>
+                    <p>Satu server fisik penuh hanya untuk satu pengguna. Performa tinggi, kontrol penuh, cocok untuk perusahaan besar.</p>
+                </li>
+                <li>
+                    <strong>Cloud Hosting</strong>
+                    <p>Menggunakan jaringan server yang saling terhubung. Sangat skalabel, dapat menyesuaikan beban lalu lintas secara dinamis.</p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 XII TKJ D - SMK 3 PERGURUAN CIKINI</p>
+    </footer>
+</body>
+</html>
